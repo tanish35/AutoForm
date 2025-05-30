@@ -7,9 +7,9 @@ public static class RegularDomLocator
     public static IWebElement? FindNameField(IWebDriver driver)
     {
         string[] selectors = {
-            "input[name='name']",
-            "input[id*='name']",
-            "input[placeholder*='name']",
+            "input[name='First Name']",
+            "input[id*='fname']",
+            "input[placeholder*='Name']",
             "input[type='text']"
         };
 

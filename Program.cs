@@ -2,6 +2,9 @@ using Scalar.AspNetCore;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using System.Text.Json.Serialization;
+using OpenQA.Selenium.Support.UI;
+using SeleniumExtras.WaitHelpers;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -46,6 +49,11 @@ app.MapPost("/fill-form", async () =>
     try
     {
         driver.Navigate().GoToUrl("https://app.cloudqa.io/home/AutomationPracticeForm");
+
+        // var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+        // wait.Until(drv => drv.FindElements(By.TagName("iframe")).Count > 2);
+
+        await Task.Delay(5000);
 
         var nameField = SmartFormFiller.FindNameField(driver);
 
