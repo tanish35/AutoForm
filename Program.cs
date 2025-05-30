@@ -42,39 +42,23 @@ app.MapGet("/weatherforecast", () =>
 
 app.MapPost("/fill-form", async () =>
 {
-    var chromeOptions = new ChromeOptions();
-    // chromeOptions.AddArgument("--headless");
-
-    using var driver = new ChromeDriver(chromeOptions);
+    using var driver = new ChromeDriver();
     try
     {
         driver.Navigate().GoToUrl("https://app.cloudqa.io/home/AutomationPracticeForm");
+        await Task.Delay(1000);
 
-        // var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
-        // wait.Until(drv => drv.FindElements(By.TagName("iframe")).Count > 2);
+        SmartFormFiller.FillAllNameFields(driver);
 
-        await Task.Delay(5000);
-
-        var nameField = SmartFormFiller.FindNameField(driver);
-
-        if (nameField is not null)
-        {
-            nameField.SendKeys("Tanish Majumdar");
-            Console.WriteLine("Form filled. Press ENTER to exit and close the browser...");
-            Console.ReadLine();
-            return Results.Ok("Form field filled.");
-        }
-        else
-        {
-            return Results.Problem("Name field could not be detected.");
-        }
+        Console.WriteLine("All fields filled. Press ENTER to exit...");
+        Console.ReadLine();
+        return Results.Ok("All form fields filled.");
     }
     catch (Exception ex)
     {
-        return Results.Problem($"Error occurred: {ex.Message}");
+        return Results.Problem($"Error: {ex.Message}");
     }
-})
-.WithName("FillAutomationForm");
+});
 
 app.Run();
 
