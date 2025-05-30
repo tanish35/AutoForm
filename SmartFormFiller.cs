@@ -9,6 +9,7 @@ public static class SmartFormFiller
     {
         return
         // RegularDomLocator.FindNameField(driver);
-            IframeWithoutIdLocator.FindNameField(driver);
+        // IframeWithoutIdLocator.FindNameField(driver);
+        IframeWithIdLocator.FindNameField(driver);
     }
 }
