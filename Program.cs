@@ -1,14 +1,8 @@
 using Scalar.AspNetCore;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
-using System.Text.Json.Serialization;
-using OpenQA.Selenium.Support.UI;
-using SeleniumExtras.WaitHelpers;
-
 
 var builder = WebApplication.CreateBuilder(args);
-
-
 
 var app = builder.Build();
 
