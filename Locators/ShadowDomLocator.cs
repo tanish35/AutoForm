@@ -6,8 +6,8 @@ public static class ShadowDomLocator
 {
     public static void FillAllShadowFields(
         IWebDriver driver,
-        string firstName = "Tanish",
-        string lastName = "Majumdar",
+        string firstName = "Charles",
+        string lastName = "Leclerc",
         string gender = "Male",
         int maxDepth = 6)
     {
@@ -104,7 +104,7 @@ public static class ShadowDomLocator
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"⚠️ Error executing shadow DOM script: {ex.Message}");
+            Console.WriteLine($"Error executing shadow DOM script: {ex.Message}");
         }
     }
 

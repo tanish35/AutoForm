@@ -13,7 +13,7 @@ public static class RegularDomLocator
             "input[placeholder*='First']",
             "input[placeholder*='Name']",
             "input[type='text']"
-        }, "Tanish");
+        }, "Charles");
 
         FillField(driver, new[]
         {
@@ -21,7 +21,7 @@ public static class RegularDomLocator
             "input[id*='lname']",
             "input[placeholder*='Last']",
             "input[placeholder*='Surname']"
-        }, "Majumdar");
+        }, "Leclerc");
 
         FillField(driver, new[]
         {
@@ -29,7 +29,7 @@ public static class RegularDomLocator
             "input[name*='email']",
             "input[id*='email']",
             "input[placeholder*='email']"
-        }, "tanish@example.com");
+        }, "charles@ferrari.com");
     }
 
     private static void FillField(IWebDriver driver, string[] selectors, string value)
