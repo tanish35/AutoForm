@@ -5,7 +5,7 @@ namespace Locators;
 
 public static class IframeWithIdLocator
 {
-    public static IWebElement? FindNameField(IWebDriver driver)
+    public static void FindNameField(IWebDriver driver)
     {
         var iframes = driver.FindElements(By.CssSelector("iframe[id]"));
         Console.WriteLine($"Found {iframes.Count} iframes with an ID.");
@@ -30,13 +30,8 @@ public static class IframeWithIdLocator
                 {
                     Console.WriteLine($"Found form: {targetForm.GetAttribute("id") ?? "no-id"}");
 
-                    var field = RegularDomLocator.FindNameField(driver);
+                    RegularDomLocator.FillFormFields(driver);
 
-                    if (field != null)
-                    {
-                        Console.WriteLine($"Found name field in iframe {iframeId}!");
-                        return field;
-                    }
                 }
 
                 driver.SwitchTo().DefaultContent();
@@ -48,6 +43,6 @@ public static class IframeWithIdLocator
             }
         }
 
-        return null;
+        return;
     }
 }

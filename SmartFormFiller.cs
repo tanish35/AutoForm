@@ -7,36 +7,31 @@ public static class SmartFormFiller
     {
         driver.SwitchTo().DefaultContent();
         // FillField(() => RegularDomLocator.FindNameField(driver));
+        RegularDomLocator.FillFormFields(driver);
 
 
         // driver.SwitchTo().DefaultContent();
 
-        // driver.SwitchTo().DefaultContent();
-        // var outerIframe = driver.FindElements(By.TagName("iframe"))
-        //     .FirstOrDefault(f => string.IsNullOrEmpty(f.GetAttribute("id")));
+        driver.SwitchTo().DefaultContent();
+        var outerIframe = driver.FindElements(By.TagName("iframe"))
+            .FirstOrDefault(f => string.IsNullOrEmpty(f.GetAttribute("id")));
 
-        // if (outerIframe != null)
-        // {
-        //     driver.SwitchTo().Frame(outerIframe);
+        if (outerIframe != null)
+        {
+            driver.SwitchTo().Frame(outerIframe);
 
-        //     var outerFormField = RegularDomLocator.FindNameField(driver);
-        //     if (outerFormField != null)
-        //     {
-        //         FillField(() => outerFormField);
-        //     }
-        //     var nestedIframes = driver.FindElements(By.TagName("iframe"));
-        //     foreach (var innerIframe in nestedIframes)
-        //     {
-        //         driver.SwitchTo().Frame(innerIframe);
-        //         var innerFormField = RegularDomLocator.FindNameField(driver);
-        //         if (innerFormField != null)
-        //         {
-        //             FillField(() => innerFormField);
-        //         }
-        //         driver.SwitchTo().ParentFrame();
-        //     }
-        //     driver.SwitchTo().DefaultContent();
-        // }
+            RegularDomLocator.FillFormFields(driver);
+
+            var nestedIframes = driver.FindElements(By.TagName("iframe"));
+            foreach (var innerIframe in nestedIframes)
+            {
+                driver.SwitchTo().Frame(innerIframe);
+                RegularDomLocator.FillFormFields(driver);
+
+                driver.SwitchTo().ParentFrame();
+            }
+            driver.SwitchTo().DefaultContent();
+        }
 
 
         // FillField(() =>
@@ -44,7 +39,8 @@ public static class SmartFormFiller
         //     driver.SwitchTo().DefaultContent();
         //     return IframeWithIdLocator.FindNameField(driver);
         // });
-        ShadowDomLocator.FillAllNameFields(driver, "Tanish Majumdar", 6);
+        IframeWithIdLocator.FindNameField(driver);
+        ShadowDomLocator.FillAllShadowFields(driver, "Tanish", "Majumdar", "Male", 6);
     }
 
     private static void FillField(Func<IWebElement?> locator)
